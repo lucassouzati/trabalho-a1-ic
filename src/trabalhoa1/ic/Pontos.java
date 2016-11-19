@@ -10,7 +10,6 @@ package trabalhoa1.ic;
  * @author Lab1
  */
 import java.awt.Graphics;
-import java.util.Random;
 import javax.swing.JPanel;
 
 public class Pontos extends JPanel{
@@ -54,13 +53,13 @@ public class Pontos extends JPanel{
     }
     
     public void gerar(){
-        Random r = new Random();
-        int x=0,y=0;
+        
+        int valoresX[] = {120, 180, 250, 380, 450, 530, 500, 310, 190, 165, 210, 155, 80};
+        int valoresY[] = {122, 75, 90, 170, 200, 350, 510, 460, 500, 390, 310, 245, 190};
+
         for (int i = 0; i < this.vertices ; i++) {
-            x = r.nextInt(this.largura);
-            y = r.nextInt(this.altura);
-            this.coordenadas[i][0] = x;
-            this.coordenadas[i][1] = y;
+            this.coordenadas[i][0] = valoresX[i];
+            this.coordenadas[i][1] = valoresY[i];
         }
     }
      
@@ -69,15 +68,15 @@ public class Pontos extends JPanel{
         //desenhando os vertices geravados
          for (int i = 0; i < this.vertices ; i++) {
              g.drawOval(this.coordenadas[i][0], this.coordenadas[i][1], 10, 10);
-             g.drawString(""+i+1,this.coordenadas[i][0], this.coordenadas[i][1]);
+             g.drawString(" "+(i), this.coordenadas[i][0], this.coordenadas[i][1]);
         }
-        for (int i = 0; i < this.vertices; i++) {
+        /*for (int i = 0; i < this.vertices; i++) {
             for (int j = 0; j < this.vertices; j++) {
                 if(i!=j){
                     g.drawLine(this.coordenadas[i][0], this.coordenadas[i][1], this.coordenadas[j][0], this.coordenadas[j][1]);
                 }
             }
-        }
+        }*/
     }
     
     public void calcula_custos(){

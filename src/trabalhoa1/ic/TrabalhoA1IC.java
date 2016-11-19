@@ -5,6 +5,8 @@
  */
 package trabalhoa1.ic;
 
+import javax.swing.JFrame;
+
 /**
  *
  * @author lsiqueira
@@ -15,7 +17,14 @@ public class TrabalhoA1IC {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        int largura = 800, altura = 600;
+        
+        Pontos pt = new Pontos(13, largura, altura);
+        JFrame application = new JFrame("Resultado");
+        application.add(pt);
+        application.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        application.setSize(altura,largura);
+        application.setVisible(true);
     }
     
 }
