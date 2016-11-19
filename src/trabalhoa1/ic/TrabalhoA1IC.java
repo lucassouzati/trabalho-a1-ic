@@ -6,6 +6,7 @@
 package trabalhoa1.ic;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -25,6 +26,40 @@ public class TrabalhoA1IC {
         application.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         application.setSize(altura,largura);
         application.setVisible(true);
+        
+        Gulosa g = new Gulosa(pt.getCustos(), pt.getCoordenadas(),  0);
+        int[] rota=g.getRota();
+        String aux="";
+        for(int i=0; i<rota.length;i++){
+            aux += "--"+rota[i];
+        }
+        JOptionPane.showMessageDialog(null, aux);
+        
+        
+        Calculos c = new Calculos(pt.getCustos(), g.getRota(), pt.getCoordenadas());
+        JFrame s_gulosa = new JFrame("Método Guloso");
+        s_gulosa.add(c);
+        s_gulosa.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        s_gulosa.setSize(altura,largura);
+        s_gulosa.setVisible(true);
+        
+        //Busca local All Pairs Aleatório
+        BuscaLocalAllPairs bl = new BuscaLocalAllPairs(0,pt.getCustos());
+        Calculos c2 = new Calculos(pt.getCustos(), bl.getRota(), pt.getCoordenadas());
+        JFrame buscaAleatoria = new JFrame("Busca Local All Pairs Aleatório");
+        buscaAleatoria.add(c2);
+        buscaAleatoria.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        buscaAleatoria.setSize(altura,largura);
+        buscaAleatoria.setVisible(true);
+        
+        //Busca local All Pairs com rota do Método Guloso
+        BuscaLocalAllPairs b2 = new BuscaLocalAllPairs(0,pt.getCustos(), g.getRota());
+        Calculos c3 = new Calculos(pt.getCustos(), b2.getRota(), pt.getCoordenadas());
+        JFrame buscaAllPairs = new JFrame("Busca Local All Pairs com rota do Método Guloso");
+        buscaAllPairs.add(c3);
+        buscaAllPairs.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        buscaAllPairs.setSize(altura,largura);
+        buscaAllPairs.setVisible(true);
     }
     
 }
