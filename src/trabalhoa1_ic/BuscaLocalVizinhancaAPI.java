@@ -5,6 +5,8 @@
  */
 package trabalhoa1_ic;
 
+import java.util.Random;
+
 /**
  *
  * @author lsiqueira
@@ -18,15 +20,45 @@ public class BuscaLocalVizinhancaAPI {
         this.ponto_partida = ponto_partida;
         this.custos = custos;
         this.rota = rota;
+        vizinhaAPI();
     }
 
     public BuscaLocalVizinhancaAPI(int ponto_partida, double[][] custos) {
         this.ponto_partida = ponto_partida;
         this.custos = custos;
-        
+        this.rota = new int[custos.length];
+        gerarAleatorio();
+        vizinhaAPI();
     }
     
-    public void vinzinhaAPI(){
+    private void gerarAleatorio(){
+        //Esvaziando o vetor
+        for(int i=0;i<this.custos.length;i++){
+            this.rota[i]=-1;
+        }
+        
+        this.rota[0]=this.ponto_partida;
+        boolean usado=false;
+        int i = 1, aux;
+        
+        Random r = new Random();
+        while(i<this.rota.length){
+            aux=r.nextInt(this.rota.length);
+            //Verifica se este ponto gerado já não está sendo usado
+            usado=false;
+            for(int k=0; k<this.rota.length; k++){
+                if(this.rota[k]==aux){
+                    usado=true;
+                }
+            }
+            if(!usado){
+                this.rota[i]=aux;
+                i++;
+            }
+        }
+    }
+    
+    public void vizinhaAPI(){
         int[] melhorRota = new int[this.rota.length];
         int[] rotaAtual = new int[this.rota.length];
         double custoRotaAtual, custoMelhorRota;

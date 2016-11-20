@@ -62,7 +62,7 @@ public class TrabalhoA1IC {
         buscaAllPairs.setVisible(true);
         
         //Busca local Vizinhança API
-        BuscaLocalVizinhancaAPI b3 = new BuscaLocalVizinhancaAPI(0,pt.getCustos(), g.getRota());
+        BuscaLocalVizinhancaAPI b3 = new BuscaLocalVizinhancaAPI(0,pt.getCustos());
         Calculos c4 = new Calculos(pt.getCustos(), b3.getRota(), pt.getCoordenadas());
         JFrame buscaVizinhaAPI = new JFrame("Busca Local Vizinhança APi com rota do Método Guloso");
         buscaVizinhaAPI.add(c4);
